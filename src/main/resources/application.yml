@@ -1,0 +1,7 @@
+#spring:
+
+bot:
+  username: ${BOT_USERNAME}
+  token: ${BOT_TOKEN}
+
+gigachat.key: ${GIGACHAT_AUTHORIZATION_KEY}

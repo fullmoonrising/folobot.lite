@@ -1,0 +1,26 @@
+version: '3.6'
+
+services:
+  app:
+    image: 'ghcr.io/everbald/folobot.lite:latest'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    restart: unless-stopped
+    environment:
+      - BOT_USERNAME
+      - BOT_TOKEN
+      - GIGACHAT_AUTHORIZATION_KEY
+      - TZ=Europe/Moscow
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - REPO_USER
+      - REPO_PASS
+      - TZ=Europe/Moscow
+    command: --interval 60 --cleanup --include-restarting app
