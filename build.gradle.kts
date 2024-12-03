@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 tasks.getByName<BootJar>("bootJar") { enabled = true; archiveBaseName.set(rootProject.name) }
@@ -24,7 +23,10 @@ ext {
 }
 
 dependencies {
+    // swagger
+    implementation("io.swagger.core.v3:swagger-annotations:2.2.26")
     // feign
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.1.2")
     // telegram api
     implementation("org.telegram:telegrambots-longpolling:7.4.1")
@@ -41,7 +43,7 @@ tasks.withType<Test> {
 
 kotlin {
     compilerOptions {
-        optIn.add("-Xjsr305=strict")
+        freeCompilerArgs.add("-Xjsr305=strict")
     }
     jvmToolchain(19)
 }

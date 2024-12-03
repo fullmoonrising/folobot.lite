@@ -1,7 +1,20 @@
-#spring:
+spring:
+  application:
+    name: folobot.lite
+    version: 0.0.1
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            loggerLevel: full
 
 bot:
   username: ${BOT_USERNAME}
   token: ${BOT_TOKEN}
 
 gigachat.key: ${GIGACHAT_AUTHORIZATION_KEY}
+
+logging:
+  level:
+    com.everbald.folobot.lite.feign: DEBUG
